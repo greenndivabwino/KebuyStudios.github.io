@@ -1,20 +1,15 @@
-# Workflow per il sito statico di Kebuy Studios
-name: 🚀 Deploy sito statico
-
+name: Deploy static content to Pages
 on:
   push:
     branches: ["main"]
   workflow_dispatch:
-
 permissions:
   contents: read
   pages: write
   id-token: write
-
 concurrency:
   group: "pages"
   cancel-in-progress: false
-
 jobs:
   deploy:
     environment:
@@ -22,17 +17,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Scarica il codice
+      - name: Checkout
         uses: actions/checkout@v4
-      
-      - name: ⚙️ Configura GitHub Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v5
-      
-      - name: 📦 Prepara i file da pubblicare
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-      
-      - name: 🌍 Pubblica su GitHub Pages
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

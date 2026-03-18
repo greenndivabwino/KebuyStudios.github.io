@@ -1,9 +1,0 @@
-# Impostazioni del sito
-title: "Kebuy Studios"
-description: "La nostra casa di giochi"
-baseurl: "/KebuyStudios.github.io"  # Lascia vuoto se è il sito principale
-url: "https://greenndivabwino.github.io"
-
-# Costruzioni
-markdown: kramdown
-theme: minima  # Tema predefinito (puoi cambiarlo)

@@ -118,8 +118,20 @@ nav a.active {
 .logo {
     width: 120px;
     height: 120px;
-    filter: drop-shadow(0 0 20px var(--primary-glow)) drop-shadow(0 0 40px rgba(255, 220, 100, 0.3));
+    border-radius: 50%;  /* Rende il logo perfettamente rotondo */
+    object-fit: cover;    /* Assicura che l'immagine si adatti bene al cerchio */
+    box-shadow: 
+        0 0 30px var(--primary-glow),        /* alone viola */
+        0 0 60px var(--accent-yellow);       /* alone giallo */
+    transition: box-shadow 0.3s ease;
     animation: floatLogo 6s ease-in-out infinite;
+}
+
+/* Opzionale: effetto hover per farlo "brillare" di più */
+.logo:hover {
+    box-shadow: 
+        0 0 40px var(--primary-glow),
+        0 0 80px var(--accent-yellow);
 }
 
 @keyframes floatLogo {

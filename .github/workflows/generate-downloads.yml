@@ -4,8 +4,8 @@ on:
   push:
     branches: ["main"]
     paths:
-      - 'downloads/**'  # Si attiva solo quando modifichi downloads/
-  workflow_dispatch:    # Eseguibile manualmente
+      - 'downloads/**'
+  workflow_dispatch:
 
 jobs:
   generate-json:
@@ -16,17 +16,50 @@ jobs:
       - name: 📥 Scarica repository
         uses: actions/checkout@v4
 
-      - name: 📂 Genera files.json dalla cartella downloads
+      - name: 📂 Genera files.json
         run: |
-          # Crea la cartella downloads se non esiste
           mkdir -p downloads
           cd downloads
-          
-          # Inizia il file JSON
           echo "[" > files.json
-          
-          # Contatore per la virgola
-          count=0
-          total=$(ls -1p | grep -v / | wc -l)
-          
-          # Loop sui file (ignora le
+          first=true
+          for file in *; do
+            if [ -f "$file" ] && [ "$file" != "files.json" ]; then
+              if [ "$first" = true ]; then
+                first=false
+              else
+                echo "," >> files.json
+              fi
+              # Dimensione
+              size=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file" 2>/dev/null)
+              if [ $size -ge 1048576 ]; then
+                size_hr="$(echo "scale=2; $size/1048576" | bc) MB"
+              elif [ $size -ge 1024 ]; then
+                size_hr="$(echo "scale=2; $size/1024" | bc) KB"
+              else
+                size_hr="${size} B"
+              fi
+              # Data
+              date=$(date -r "$file" +%Y-%m-%d 2>/dev/null || date -r "$file" +%Y-%m-%d)
+              echo "  { \"name\": \"$file\", \"size\": \"$size_hr\", \"date\": \"$date\" }" >> files.json
+            fi
+          done
+          echo "]" >> files.json
+          cd ..
+
+      - name: ✅ Controlla modifiche
+        id: git-check
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add downloads/files.json
+          if git diff --staged --quiet; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: 📤 Carica files.json
+        if: steps.git-check.outputs.changed == 'true'
+        run: |
+          git commit -m "Aggiornamento automatico files.json [skip ci]"
+          git push

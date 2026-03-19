@@ -5,71 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download - Kebuy Studios</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .download-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 30px 0;
-            background: rgba(26, 31, 46, 0.8);
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        .download-table th {
-            background: linear-gradient(45deg, #6b46c1, #8b5cf6);
-            color: white;
-            padding: 12px;
-            text-align: left;
-        }
-        .download-table td {
-            padding: 12px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        .download-table tr:hover {
-            background: rgba(107, 70, 193, 0.2);
-        }
-        .download-btn {
-            background: #6b46c1;
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            display: inline-block;
-        }
-        .download-btn:hover {
-            background: #8b5cf6;
-            transform: scale(1.05);
-        }
-        .loading {
-            text-align: center;
-            padding: 20px;
-            color: #a0aec0;
-        }
-        .error {
-            color: #f56565;
-            text-align: center;
-            padding: 20px;
-        }
-        .back-link {
-            display: inline-block;
-            margin-top: 20px;
-            color: #fbbf24;
-        }
-    </style>
 </head>
 <body>
+    <div class="particles"></div>
+    
     <header>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="downloads.html" class="active">Download</a></li>
+                <li><a href="documentation.html">Documentazione</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="container">
-        <h1>📥 Download Giochi e Programmi</h1>
-        <p>Qui puoi scaricare gli installer dei nostri giochi e strumenti per la casa di giochi.</p>
+        <h1 class="neon-title">📥 Download</h1>
+        <div class="neon-line"></div>
+        <p class="hero-text">Qui puoi scaricare gli installer dei nostri giochi e strumenti per la casa di giochi. I file vengono aggiornati automaticamente.</p>
 
         <table class="download-table">
             <thead>
@@ -81,13 +34,14 @@
                 </tr>
             </thead>
             <tbody id="download-list">
-                <tr><td colspan="4" class="loading">Caricamento in corso...</td></tr>
+                <tr><td colspan="4" class="loading">Caricamento in corso... ⏳</td></tr>
             </tbody>
         </table>
 
-        <p class="note" style="margin-top: 20px; color: #a0aec0;">
-            ⚡ Per caricare nuovi file, vai su GitHub → repository → cartella "downloads" → "Add file" → "Upload files". Dopo qualche minuto appariranno qui automaticamente.
-        </p>
+        <div class="note" style="background: rgba(10,10,30,0.5); padding: 1.5rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--accent-yellow);">
+            <h3 style="color: var(--accent-yellow); margin-bottom: 0.5rem;">📌 Come funziona</h3>
+            <p>Per caricare nuovi file, vai su GitHub → repository → cartella "downloads" → "Add file" → "Upload files". Dopo qualche minuto appariranno qui automaticamente.</p>
+        </div>
 
         <a href="index.html" class="back-link">← Torna alla home</a>
     </main>
@@ -96,20 +50,22 @@
         <p>© 2026 Kebuy Studios - La tua casa di giochi</p>
     </footer>
 
+    <script src="script.js"></script>
     <script>
         // Carica il file JSON generato automaticamente
         fetch('downloads/files.json')
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('File JSON non trovato');
+                    throw new Error('File JSON non trovato. Assicurati che ci siano file nella cartella downloads/');
                 }
                 return response.json();
             })
             .then(files => {
                 const tbody = document.getElementById('download-list');
-                tbody.innerHTML = ''; // rimuovi il caricamento
+                tbody.innerHTML = '';
+                
                 if (files.length === 0) {
-                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:20px;">Nessun file disponibile al momento.</td></tr>';
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:2rem;">Nessun file disponibile al momento.</td></tr>';
                 } else {
                     files.forEach(file => {
                         const row = document.createElement('tr');
@@ -125,7 +81,7 @@
             })
             .catch(error => {
                 const tbody = document.getElementById('download-list');
-                tbody.innerHTML = `<tr><td colspan="4" class="error">Errore nel caricamento dei file: ${error.message}. Assicurati che ci siano file nella cartella downloads/ e che il workflow sia stato eseguito.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" class="error">❌ Errore: ${error.message}</td></tr>`;
             });
     </script>
 </body>

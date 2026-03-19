@@ -22,14 +22,14 @@
     <main class="container">
         <h1 class="neon-title">📥 Download</h1>
         <div class="neon-line"></div>
-        <p class="hero-text">Qui puoi scaricare gli installer dei nostri giochi e strumenti per la casa di giochi. I file vengono aggiornati automaticamente.</p>
+        <p class="hero-text">Qui puoi scaricare gli installer dei nostri giochi e strumenti. I file vengono aggiornati automaticamente.</p>
 
         <table class="download-table">
             <thead>
                 <tr>
                     <th>File</th>
                     <th>Dimensione</th>
-                    <th>Data caricamento</th>
+                    <th>Data</th>
                     <th>Download</th>
                 </tr>
             </thead>
@@ -38,25 +38,24 @@
             </tbody>
         </table>
 
-        <div class="note" style="background: rgba(10,10,30,0.5); padding: 1.5rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--accent-yellow);">
-            <h3 style="color: var(--accent-yellow); margin-bottom: 0.5rem;">📌 Come funziona</h3>
-            <p>Per caricare nuovi file, vai su GitHub → repository → cartella "downloads" → "Add file" → "Upload files". Dopo qualche minuto appariranno qui automaticamente.</p>
+        <div class="note" style="background: rgba(10,10,20,0.5); padding: 1.5rem; border-radius: 10px; margin: 2rem 0; border-left: 4px solid var(--accent-yellow);">
+            <h3 style="color: var(--accent-yellow); margin-bottom: 0.5rem;">📌 Come caricare nuovi giochi</h3>
+            <p>Per aggiungere file, vai su GitHub → repository → cartella "downloads" → "Add file" → "Upload files". Dopo pochi minuti appariranno qui automaticamente.</p>
         </div>
 
         <a href="index.html" class="back-link">← Torna alla home</a>
     </main>
 
     <footer>
-        <p>© 2026 Kebuy Studios - La tua casa di giochi</p>
+        <p>© 2026 Kebuy Studios</p>
     </footer>
 
     <script src="script.js"></script>
     <script>
-        // Carica il file JSON generato automaticamente
         fetch('downloads/files.json')
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('File JSON non trovato. Assicurati che ci siano file nella cartella downloads/');
+                    throw new Error('Nessun file disponibile. Carica qualcosa nella cartella downloads/');
                 }
                 return response.json();
             })
@@ -80,8 +79,7 @@
                 }
             })
             .catch(error => {
-                const tbody = document.getElementById('download-list');
-                tbody.innerHTML = `<tr><td colspan="4" class="error">❌ Errore: ${error.message}</td></tr>`;
+                document.getElementById('download-list').innerHTML = `<tr><td colspan="4" class="error">❌ ${error.message}</td></tr>`;
             });
     </script>
 </body>

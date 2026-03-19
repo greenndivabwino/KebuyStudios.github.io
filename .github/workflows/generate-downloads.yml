@@ -1,1 +1,32 @@
+name: 📦 Genera files.json per download
 
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - 'downloads/**'  # Si attiva solo quando modifichi downloads/
+  workflow_dispatch:    # Eseguibile manualmente
+
+jobs:
+  generate-json:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: 📥 Scarica repository
+        uses: actions/checkout@v4
+
+      - name: 📂 Genera files.json dalla cartella downloads
+        run: |
+          # Crea la cartella downloads se non esiste
+          mkdir -p downloads
+          cd downloads
+          
+          # Inizia il file JSON
+          echo "[" > files.json
+          
+          # Contatore per la virgola
+          count=0
+          total=$(ls -1p | grep -v / | wc -l)
+          
+          # Loop sui file (ignora le

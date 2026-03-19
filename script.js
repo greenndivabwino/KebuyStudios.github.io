@@ -7,10 +7,9 @@ console.log('🎮 Benvenuto in Kebuy Studios! Il nostro quartier generale digita
 window.addEventListener('scroll', function() {
     const header = document.querySelector('header');
     if (window.scrollY > 50) {
-        header.style.background = 'rgba(5, 5, 20, 0.95)';
-        header.style.backdropFilter = 'blur(10px)';
+        header.style.background = 'rgba(6, 6, 10, 0.95)';
     } else {
-        header.style.background = 'rgba(5, 5, 20, 0.8)';
+        header.style.background = 'rgba(6, 6, 10, 0.8)';
     }
 });
 
@@ -28,12 +27,3 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 });
-
-// Funzione per formattare la dimensione dei file (utile per downloads.html)
-function formatFileSize(bytes) {
-    if (bytes === 0) return '0 Bytes';
-    const k = 1024;
-    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
-    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
-}

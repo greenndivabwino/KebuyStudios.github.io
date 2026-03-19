@@ -3,21 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kebuy Studios</title>
+    <title>Kebuy Studios - Home</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Logo (se c'è) -->
-        <img src="logo.png" alt="Kebuy Studios Logo" class="logo" id="site-logo">
-        
-        <h1>🎮 Kebuy Studios</h1>
-        <p>Benvenuti nella nostra casa di giochi!</p>
-        <p class="counter" id="online-counter"></p>
-        
-        <button class="btn" onclick="showMessage()">Clicca per il saluto!</button>
-    </div>
-<li><a href="downloads.html">Download</a></li>
+    <!-- Sfondo animato -->
+    <div class="particles"></div>
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="downloads.html">Download</a></li>
+                <li><a href="documentation.html">Documentazione</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <section class="hero">
+            <h1 class="neon-title">🎮 Kebuy Studios</h1>
+            <p class="neon-subtitle">La tua casa di giochi</p>
+            <div class="neon-line"></div>
+            <p class="hero-text">Benvenuti nel nostro quartier generale digitale. Siamo un gruppo di amici che trasforma la passione per i giochi in qualcosa di speciale.</p>
+            <div class="cta-buttons">
+                <a href="downloads.html" class="btn neon-btn">Scarica i giochi</a>
+                <a href="documentation.html" class="btn neon-btn outline">Leggi la documentazione</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎲</div>
+                <h3>Giochi originali</h3>
+                <p>Creiamo esperienze uniche per te e i tuoi amici.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚀</div>
+                <h3>Sempre aggiornati</h3>
+                <p>Nuovi contenuti e giochi in arrivo regolarmente.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💜</div>
+                <h3>Community</h3>
+                <p>Unisciti alla nostra casa di giochi.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 Kebuy Studios - Creato con 💜 e 🎮</p>
+    </footer>
+
     <script src="script.js"></script>
 </body>
 </html>

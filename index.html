@@ -102,17 +102,20 @@
     <script>
         // Carica e converte il file documentation.md
         fetch('documentation.md')
-            .then(response => {
-                if (!response.ok) throw new Error('File documentation.md non trovato');
-                return response.text();
-            })
-            .then(markdown => {
-                const html = marked.parse(markdown); // Converte in HTML
-                document.getElementById('doc-content').innerHTML = html;
-            })
-            .catch(error => {
-                document.getElementById('doc-content').innerHTML = `<p class="error">❌ Errore: ${error.message}</p>`;
-            });
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+        }
+        return response.text();
+    })
+    .then(markdown => {
+        document.getElementById('doc-content').innerHTML = marked.parse(markdown);
+    })
+    .catch(error => {
+        document.getElementById('doc-content').innerHTML = 
+            `<p class="error">❌ Errore: ${error.message}<br>Verifica che il file documentation.md sia nella root.</p>`;
+        console.error('Errore fetch:', error);
+    });
 
         // Carica la lista dei download (come prima)
         fetch('downloads/files.json')

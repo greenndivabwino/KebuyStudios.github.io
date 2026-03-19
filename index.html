@@ -3,64 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kebuy Studios - Home</title>
+    <title>Kebuy Studios</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Sfondo animato -->
     <div class="particles"></div>
     
     <header>
         <nav>
             <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="downloads.html">Download</a></li>
-                <li><a href="documentation.html">Documentazione</a></li>
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#documentazione">Documentazione</a></li>
+                <li><a href="#download">Download</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="container">
-        <!-- Logo in Base64 (controller icon) -->
-        <div class="logo-container">
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 24 24' fill='%238a2be2'%3E%3Cpath d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-10H8v2h2v2h2v-2h2v-2h-2V8h-2v2zm6 4h-2v2h2v-2z'/%3E%3C/svg%3E"
-                 alt="Kebuy Studios Logo" class="logo">
-        </div>
-        
-        <section class="hero">
-            <h1 class="neon-title">🎮 Kebuy Studios</h1>
-            <p class="neon-subtitle">La tua casa di giochi</p>
-            <div class="neon-line"></div>
-            <p class="hero-text">Benvenuti nel nostro quartier generale digitale. Siamo un gruppo di amici che trasforma la passione per i giochi in qualcosa di speciale.</p>
-            <div class="cta-buttons">
-                <a href="downloads.html" class="btn neon-btn">Scarica i giochi</a>
-                <a href="documentation.html" class="btn neon-btn outline">Leggi la documentazione</a>
+        <!-- HOME -->
+        <section id="home" class="section">
+            <div class="logo-container">
+                <img src="logo.png" alt="Kebuy Studios Logo" class="logo">
+            </div>
+            
+            <div class="hero">
+                <h1 class="neon-title">🎮 Kebuy Studios</h1>
+                <p class="neon-subtitle">La tua casa di giochi</p>
+                <div class="neon-line"></div>
+                <p class="hero-text">Benvenuti nel nostro quartier generale digitale. Siamo un gruppo di amici che trasforma la passione per i giochi in qualcosa di speciale.</p>
+                <div class="cta-buttons">
+                    <a href="#download" class="btn neon-btn">Scarica i giochi</a>
+                    <a href="#documentazione" class="btn neon-btn outline">Leggi la documentazione</a>
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature-card">
+                    <div class="feature-icon">🎲</div>
+                    <h3>Giochi originali</h3>
+                    <p>Creiamo esperienze uniche per i nostri giocatori.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Sempre aggiornati</h3>
+                    <p>Nuovi contenuti e giochi in arrivo regolarmente.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💜</div>
+                    <h3>Community</h3>
+                    <p>Unisciti alla nostra casa di giochi.</p>
+                </div>
             </div>
         </section>
 
-        <section class="features">
-            <div class="feature-card">
-                <div class="feature-icon">🎲</div>
-                <h3>Giochi originali</h3>
-                <p>Creiamo esperienze uniche per te e i tuoi amici.</p>
+        <!-- DOCUMENTAZIONE (carica da documentation.md se usi Jekyll, altrimenti questo è statico) -->
+        <section id="documentazione" class="section">
+            <h1 class="neon-title">📚 Documentazione</h1>
+            <div class="neon-line"></div>
+            
+            <div class="documentation-content">
+                <h2>Benvenuto nella documentazione di Kebuy Studios</h2>
+                <p>Qui trovi tutte le informazioni su come contribuire e usare i nostri giochi.</p>
+                
+                <h3>🎯 La nostra missione</h3>
+                <p>Kebuy Studios nasce dalla passione per i videogiochi. Vogliamo creare esperienze divertenti e coinvolgenti.</p>
+                
+                <h3>🛠️ Come contribuire</h3>
+                <ul>
+                    <li><strong>Segnala bug</strong> - Apri una issue su GitHub</li>
+                    <li><strong>Suggerisci idee</strong> - Raccontaci cosa vorresti vedere</li>
+                </ul>
+                
+                <h3>🎮 I nostri progetti</h3>
+                <ul>
+                    <li><span class="status-dot" style="color: #00ff00;">●</span> <strong>Avventura nel Dungeon</strong>: Gioco di ruolo</li>
+                    <li><span class="status-dot" style="color: #00ff00;">●</span> <strong>Puzzle Party</strong>: Enigmi in squadra</li>
+                    <li><span class="status-dot" style="color: #ffff00;">●</span> <strong>Space Racers</strong>: Gare spaziali (in testing)</li>
+                </ul>
+                
+                <h3>📦 Download</h3>
+                <p>Tutti i giochi sono disponibili nella sezione <a href="#download">Download</a>.</p>
+                
+                <h3>📞 Contatti</h3>
+                <p><a href="https://github.com/greenndivabwino/KebuyStudios.github.io/issues" target="_blank">Apri una issue su GitHub</a></p>
+                
+                <p><em>Ultimo aggiornamento: Marzo 2026</em></p>
             </div>
-            <div class="feature-card">
-                <div class="feature-icon">🚀</div>
-                <h3>Sempre aggiornati</h3>
-                <p>Nuovi contenuti e giochi in arrivo regolarmente.</</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">💜</div>
-                <h3>Community</h3>
-                <p>Unisciti alla nostra casa di giochi.</p>
+        </section>
+
+        <!-- DOWNLOAD -->
+        <section id="download" class="section">
+            <h1 class="neon-title">📥 Download</h1>
+            <div class="neon-line"></div>
+            <p class="hero-text">Qui puoi scaricare i nostri giochi. I file vengono elencati automaticamente.</p>
+
+            <table class="download-table">
+                <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Dimensione</th>
+                        <th>Data</th>
+                        <th>Download</th>
+                    </tr>
+                </thead>
+                <tbody id="download-list">
+                    <tr><td colspan="4" class="loading">Caricamento in corso... ⏳</td></tr>
+                </tbody>
+            </table>
+
+            <div class="note">
+                <h3>📌 Come aggiungere nuovi giochi</h3>
+                <p>Vai su GitHub → repository → cartella <strong>downloads/</strong> → "Add file" → "Upload files". Dopo pochi minuti appariranno qui.</p>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2026 Kebuy Studios - Creato con 💜 e 🎮</p>
+        <p>© 2026 Kebuy Studios - La tua casa di giochi</p>
     </footer>
 
     <script src="script.js"></script>
+    <script>
+        fetch('downloads/files.json')
+            .then(response => {
+                if (!response.ok) throw new Error('Nessun file disponibile');
+                return response.json();
+            })
+            .then(files => {
+                const tbody = document.getElementById('download-list');
+                tbody.innerHTML = '';
+                if (files.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" style="text-align:center; padding:2rem;">Nessun file al momento.</td></tr>';
+                } else {
+                    files.forEach(file => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>📁 ${file.name}</td>
+                            <td>${file.size}</td>
+                            <td>${file.date}</td>
+                            <td><a href="downloads/${file.name}" class="download-btn" download>Scarica</a></td>
+                        `;
+                        tbody.appendChild(row);
+                    });
+                }
+            })
+            .catch(error => {
+                document.getElementById('download-list').innerHTML = `<tr><td colspan="4" class="error">❌ ${error.message}</td></tr>`;
+            });
+    </script>
 </body>
 </html>

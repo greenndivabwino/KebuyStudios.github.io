@@ -1,65 +1,30 @@
-name: 📦 Genera files.json per download
-
+name: Genera lista download
 on:
   push:
-    branches: ["main"]
+    branches: [ main ]
     paths:
       - 'downloads/**'
   workflow_dispatch:
 
 jobs:
-  generate-json:
+  generate-listing:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-      - name: 📥 Scarica repository
-        uses: actions/checkout@v4
-
-      - name: 📂 Genera files.json
+      - uses: actions/checkout@v4
+      
+      - name: Generate directory listing
+        uses: yKicchan/generate-directory-listing-action@v1
+        with:
+          target: downloads
+          showHiddenFiles: false
+          override: true
+          
+      - name: Commit changes
         run: |
-          mkdir -p downloads
-          cd downloads
-          echo "[" > files.json
-          first=true
-          for file in *; do
-            if [ -f "$file" ] && [ "$file" != "files.json" ]; then
-              if [ "$first" = true ]; then
-                first=false
-              else
-                echo "," >> files.json
-              fi
-              # Dimensione
-              size=$(stat -c%s "$file" 2>/dev/null || stat -f%z "$file" 2>/dev/null)
-              if [ $size -ge 1048576 ]; then
-                size_hr="$(echo "scale=2; $size/1048576" | bc) MB"
-              elif [ $size -ge 1024 ]; then
-                size_hr="$(echo "scale=2; $size/1024" | bc) KB"
-              else
-                size_hr="${size} B"
-              fi
-              # Data
-              date=$(date -r "$file" +%Y-%m-%d 2>/dev/null || date -r "$file" +%Y-%m-%d)
-              echo "  { \"name\": \"$file\", \"size\": \"$size_hr\", \"date\": \"$date\" }" >> files.json
-            fi
-          done
-          echo "]" >> files.json
-          cd ..
-
-      - name: ✅ Controlla modifiche
-        id: git-check
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git add downloads/files.json
-          if git diff --staged --quiet; then
-            echo "changed=false" >> $GITHUB_OUTPUT
-          else
-            echo "changed=true" >> $GITHUB_OUTPUT
-          fi
-
-      - name: 📤 Carica files.json
-        if: steps.git-check.outputs.changed == 'true'
-        run: |
-          git commit -m "Aggiornamento automatico files.json [skip ci]"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add downloads/index.html
+          git diff --quiet && git diff --staged --quiet || git commit -m "Aggiorna lista download [skip ci]"
           git push

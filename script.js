@@ -1,34 +1,39 @@
-// Messaggio di benvenuto
-function showMessage() {
-    alert('🎮 Benvenuto in Kebuy Studios! La tua casa di giochi.');
-}
+// Kebuy Studios - JavaScript
 
-// Contatore giorni online
-function updateCounter() {
-    const startDate = new Date('2026-03-18'); // Data di lancio
-    const today = new Date();
-    const diffTime = today - startDate;
-    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
-    
-    const counterEl = document.getElementById('online-counter');
-    if (counterEl) {
-        counterEl.textContent = `🎉 Online da ${diffDays} giorni!`;
-    }
-}
+// Effetto di benvenuto nella console
+console.log('🎮 Benvenuto in Kebuy Studios! Il nostro quartier generale digitale.');
 
-// Esegui quando la pagina è caricata
-document.addEventListener('DOMContentLoaded', function() {
-    updateCounter();
-    
-    // Effetto extra sul logo
-    const logo = document.getElementById('site-logo');
-    if (logo) {
-        logo.addEventListener('mouseenter', () => {
-            logo.style.transform = 'scale(1.1) rotate(5deg)';
-            logo.style.transition = '0.3s';
-        });
-        logo.addEventListener('mouseleave', () => {
-            logo.style.transform = 'scale(1) rotate(0)';
-        });
+// Gestione header trasparente allo scroll
+window.addEventListener('scroll', function() {
+    const header = document.querySelector('header');
+    if (window.scrollY > 50) {
+        header.style.background = 'rgba(5, 5, 20, 0.95)';
+        header.style.backdropFilter = 'blur(10px)';
+    } else {
+        header.style.background = 'rgba(5, 5, 20, 0.8)';
     }
 });
+
+// Aggiunge classe active al link corrente
+document.addEventListener('DOMContentLoaded', function() {
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const navLinks = document.querySelectorAll('nav a');
+    
+    navLinks.forEach(link => {
+        const linkPage = link.getAttribute('href');
+        if (linkPage === currentPage) {
+            link.classList.add('active');
+        } else if (currentPage === '' && linkPage === 'index.html') {
+            link.classList.add('active');
+        }
+    });
+});
+
+// Funzione per formattare la dimensione dei file (utile per downloads.html)
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}

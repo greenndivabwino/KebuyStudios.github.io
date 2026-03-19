@@ -2,12 +2,12 @@
 :root {
     --bg-dark: #0a0a1a;
     --bg-darker: #050510;
-    --primary-violet: #8a2be2;
-    --primary-glow: #b87aff;
-    --accent-yellow: #ffd700;
-    --accent-glow: #ffed7a;
-    --text-light: #e0e0ff;
-    --text-dim: #a0a0cc;
+    --primary-violet: #b87aff;
+    --primary-glow: #d4a5ff;
+    --accent-yellow: #ffd966;
+    --accent-glow: #ffe89c;
+    --text-light: #f0f0ff;
+    --text-dim: #b8b8d0;
 }
 
 /* ===== RESET ===== */
@@ -19,11 +19,10 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #0a0a1a, #1a1a2e, #16213e);
+    background: linear-gradient(135deg, #0a0a1a 0%, #1a1a2e 50%, #16213e 100%);
     color: var(--text-light);
     line-height: 1.6;
     min-height: 100vh;
-    position: relative;
     overflow-x: hidden;
 }
 
@@ -35,23 +34,23 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: radial-gradient(circle at 20% 30%, rgba(138, 43, 226, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.1) 0%, transparent 40%),
-                linear-gradient(135deg, #0a0a1a, #1a1a2e, #16213e);
+    background: radial-gradient(circle at 20% 30%, rgba(180, 130, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 220, 100, 0.1) 0%, transparent 40%);
     animation: moveParticles 25s ease infinite;
 }
 
 @keyframes moveParticles {
-    0%, 100% { background-position: 0% 0%; }
+    0% { background-position: 0% 0%; }
     50% { background-position: 100% 100%; }
+    100% { background-position: 0% 0%; }
 }
 
 /* ===== HEADER & NAVIGATION ===== */
 header {
-    background: rgba(5, 5, 20, 0.8);
+    background: rgba(6, 6, 10, 0.8);
     backdrop-filter: blur(10px);
     border-bottom: 2px solid var(--primary-violet);
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+    box-shadow: 0 0 20px rgba(180, 130, 255, 0.3);
     position: sticky;
     top: 0;
     z-index: 100;
@@ -71,9 +70,8 @@ nav a {
     font-weight: bold;
     font-size: 1.2rem;
     padding: 0.5rem 1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
     position: relative;
+    transition: all 0.3s ease;
 }
 
 nav a::after {
@@ -109,7 +107,7 @@ nav a.active {
     padding: 2rem 0;
 }
 
-/* ===== LOGO ===== */
+/* ===== LOGO (rotondo e sfumato) ===== */
 .logo-container {
     text-align: center;
     margin: 1rem 0 2rem;
@@ -118,25 +116,29 @@ nav a.active {
 .logo {
     width: 120px;
     height: 120px;
-    border-radius: 50%;  /* Rende il logo perfettamente rotondo */
-    object-fit: cover;    /* Assicura che l'immagine si adatti bene al cerchio */
+    border-radius: 50%;               /* Rende il logo rotondo */
+    object-fit: cover;                 /* Adatta l'immagine al cerchio */
     box-shadow: 
-        0 0 30px var(--primary-glow),        /* alone viola */
-        0 0 60px var(--accent-yellow);       /* alone giallo */
-    transition: box-shadow 0.3s ease;
+        0 0 30px var(--primary-violet),    /* alone viola interno */
+        0 0 60px var(--accent-yellow),     /* alone giallo esterno */
+        0 0 90px rgba(138, 43, 226, 0.3);  /* alone extra per profondità */
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.3));
+    transition: all 0.4s ease;
     animation: floatLogo 6s ease-in-out infinite;
 }
 
-/* Opzionale: effetto hover per farlo "brillare" di più */
 .logo:hover {
+    transform: scale(1.05);
     box-shadow: 
         0 0 40px var(--primary-glow),
-        0 0 80px var(--accent-yellow);
+        0 0 80px var(--accent-glow),
+        0 0 120px rgba(138, 43, 226, 0.5);
+    filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.5));
 }
 
 @keyframes floatLogo {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-10px) rotate(5deg); }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
 }
 
 /* ===== HERO SECTION ===== */
@@ -163,16 +165,16 @@ nav a.active {
     background: linear-gradient(45deg, var(--primary-violet), var(--accent-yellow));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 0 30px rgba(138, 43, 226, 0.5), 0 0 60px rgba(255, 215, 0, 0.3);
+    text-shadow: 0 0 30px rgba(180, 130, 255, 0.5), 0 0 60px rgba(255, 220, 100, 0.3);
     animation: neonPulse 3s ease infinite;
 }
 
 @keyframes neonPulse {
     0%, 100% {
-        text-shadow: 0 0 30px rgba(138, 43, 226, 0.5), 0 0 60px rgba(255, 215, 0, 0.3);
+        text-shadow: 0 0 30px rgba(180, 130, 255, 0.5), 0 0 60px rgba(255, 220, 100, 0.3);
     }
     50% {
-        text-shadow: 0 0 50px rgba(138, 43, 226, 0.8), 0 0 90px rgba(255, 215, 0, 0.6);
+        text-shadow: 0 0 50px rgba(180, 130, 255, 0.8), 0 0 90px rgba(255, 220, 100, 0.6);
     }
 }
 
@@ -278,7 +280,7 @@ nav a.active {
 .feature-card {
     background: rgba(10, 10, 20, 0.5);
     backdrop-filter: blur(5px);
-    border: 1px solid rgba(138, 43, 226, 0.3);
+    border: 1px solid rgba(180, 130, 255, 0.3);
     border-radius: 15px;
     padding: 2rem;
     text-align: center;
@@ -289,7 +291,7 @@ nav a.active {
 .feature-card:hover {
     transform: translateY(-10px);
     border-color: var(--primary-violet);
-    box-shadow: 0 0 30px rgba(138, 43, 226, 0.4), 0 0 60px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 0 30px rgba(180, 130, 255, 0.4), 0 0 60px rgba(255, 220, 100, 0.2);
 }
 
 .feature-icon {
@@ -306,66 +308,6 @@ nav a.active {
 
 .feature-card p {
     color: var(--text-dim);
-}
-
-/* ===== DOCUMENTATION CONTENT ===== */
-.documentation-content {
-    background: rgba(10, 10, 20, 0.7);
-    backdrop-filter: blur(5px);
-    border-radius: 15px;
-    padding: 2rem;
-    margin: 2rem 0;
-    border: 1px solid rgba(138, 43, 226, 0.3);
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-}
-
-.documentation-content h1 {
-    color: var(--accent-yellow);
-    margin-bottom: 1rem;
-    font-size: 2.5rem;
-    border-bottom: 2px solid var(--primary-violet);
-    padding-bottom: 0.5rem;
-}
-
-.documentation-content h2 {
-    color: var(--primary-glow);
-    margin: 1.5rem 0 1rem;
-}
-
-.documentation-content h3 {
-    color: var(--accent-yellow);
-    margin: 1.2rem 0 0.5rem;
-}
-
-.documentation-content p {
-    margin: 1rem 0;
-    line-height: 1.8;
-}
-
-.documentation-content ul, 
-.documentation-content ol {
-    margin-left: 2rem;
-    margin-bottom: 1rem;
-}
-
-.documentation-content li {
-    margin: 0.5rem 0;
-}
-
-.documentation-content a {
-    color: var(--primary-glow);
-    text-decoration: none;
-    border-bottom: 1px dashed var(--accent-yellow);
-}
-
-.documentation-content a:hover {
-    color: var(--accent-yellow);
-    text-shadow: 0 0 10px var(--accent-glow);
-}
-
-.status-dot {
-    display: inline-block;
-    margin-right: 0.5rem;
 }
 
 /* ===== DOWNLOAD TABLE ===== */
@@ -390,7 +332,7 @@ nav a.active {
 
 .download-table td {
     padding: 1rem;
-    border-bottom: 1px solid rgba(138, 43, 226, 0.3);
+    border-bottom: 1px solid rgba(180, 130, 255, 0.3);
 }
 
 .download-table tr:hover {
@@ -425,6 +367,115 @@ nav a.active {
     color: #ff8a8a;
 }
 
+/* ===== DOCUMENTATION CONTENT (da Markdown) ===== */
+.documentation-content {
+    background: rgba(10, 10, 20, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: 15px;
+    padding: 2rem;
+    margin: 2rem 0;
+    border: 1px solid rgba(180, 130, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.documentation-content h1 {
+    color: var(--accent-yellow);
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+    border-bottom: 2px solid var(--primary-violet);
+    padding-bottom: 0.5rem;
+}
+
+.documentation-content h2 {
+    color: var(--primary-glow);
+    margin: 1.5rem 0 1rem;
+    font-size: 2rem;
+}
+
+.documentation-content h3 {
+    color: var(--accent-yellow);
+    margin: 1.2rem 0 0.5rem;
+    font-size: 1.5rem;
+}
+
+.documentation-content p {
+    margin: 1rem 0;
+    line-height: 1.8;
+    color: var(--text-dim);
+}
+
+.documentation-content ul, 
+.documentation-content ol {
+    margin-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.documentation-content li {
+    margin: 0.5rem 0;
+    color: var(--text-dim);
+}
+
+.documentation-content a {
+    color: var(--primary-glow);
+    text-decoration: none;
+    border-bottom: 1px dashed var(--accent-yellow);
+    transition: all 0.3s ease;
+}
+
+.documentation-content a:hover {
+    color: var(--accent-yellow);
+    text-shadow: 0 0 10px var(--accent-glow);
+    border-bottom: 1px solid var(--accent-yellow);
+}
+
+.documentation-content code {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    color: var(--accent-yellow);
+    font-family: 'Courier New', monospace;
+}
+
+.documentation-content pre {
+    background: rgba(0, 0, 0, 0.5);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid var(--primary-violet);
+    margin: 1rem 0;
+}
+
+.documentation-content pre code {
+    background: none;
+    color: var(--text-light);
+}
+
+.documentation-content blockquote {
+    border-left: 4px solid var(--primary-violet);
+    padding-left: 1rem;
+    margin: 1rem 0;
+    color: var(--text-dim);
+    font-style: italic;
+}
+
+.documentation-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.documentation-content th {
+    background: rgba(138, 43, 226, 0.3);
+    padding: 0.5rem;
+    border: 1px solid var(--primary-violet);
+}
+
+.documentation-content td {
+    padding: 0.5rem;
+    border: 1px solid rgba(180, 130, 255, 0.3);
+}
+
+/* ===== NOTE BOX (per download) ===== */
 .note {
     background: rgba(10, 10, 20, 0.5);
     padding: 1.5rem;
@@ -436,6 +487,13 @@ nav a.active {
 .note h3 {
     color: var(--accent-yellow);
     margin-bottom: 0.5rem;
+    font-size: 1.3rem;
+}
+
+/* ===== STATUS DOT ===== */
+.status-dot {
+    display: inline-block;
+    margin-right: 0.5rem;
 }
 
 /* ===== FOOTER ===== */
@@ -443,7 +501,7 @@ footer {
     text-align: center;
     padding: 2rem;
     margin-top: 4rem;
-    border-top: 1px solid rgba(138, 43, 226, 0.3);
+    border-top: 1px solid rgba(180, 130, 255, 0.3);
     color: var(--text-dim);
 }
 
@@ -476,5 +534,10 @@ footer {
     .download-table td, 
     .download-table th {
         padding: 0.75rem;
+    }
+    
+    .logo {
+        width: 100px;
+        height: 100px;
     }
 }
